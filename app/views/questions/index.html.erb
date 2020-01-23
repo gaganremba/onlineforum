@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="panel panel-default">
+    <ul class = "list-group">
+      <% @questions.each do |question| %>
+      <li class = "list-group-item">
+        <%=link_to question.title, answer_question_path(question) %>
+        asked by <%= question.user&.name %>
+      </li>
+      <% end %>
+    </ul>
+    <%= will_paginate @questions, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

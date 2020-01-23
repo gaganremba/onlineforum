@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QuestionAnswer</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body >
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">QuestionAnswer</a>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><%= link_to "Home", root_path  %></li>
+          </ul> 
+           <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "New Question", new_question_path  %></li>
+            <% unless user_signed_in? %>
+            <li><%= link_to "Login",new_user_session_path  %></li>
+            <li><%= link_to "Registration", new_user_registration_path%></li>
+            <%else%>          
+            <!-- <li><%#= link_to "My Booking", bookings_path  %></li> -->
+
+            <li><%= link_to "Logout",destroy_user_session_path , method: :delete%></li>
+          
+          <%end%>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <%= bootstrap_flash %>
+      <%= yield %>       
+    </div>
+  </body>
+</html>
